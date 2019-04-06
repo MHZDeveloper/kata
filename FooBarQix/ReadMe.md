@@ -1,8 +1,8 @@
 link : http://codingdojo.org/kata/FooBarQix/
 
-Task:
+# Task:
 
- FooBarQix
+## FooBarQix
 
 You should implements a function String compute(String) which implements the following rules.
 Step 1
