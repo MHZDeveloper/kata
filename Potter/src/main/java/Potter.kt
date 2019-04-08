@@ -1,6 +1,6 @@
 import java.util.function.Predicate
 
-class Discounts{
+class Purchase{
 
     val bookPrice = 8.0
     var discounts = ArrayList<DiscountType>()

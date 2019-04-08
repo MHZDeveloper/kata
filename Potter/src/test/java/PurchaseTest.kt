@@ -1,9 +1,9 @@
 import org.junit.Assert
 import org.junit.Test
 
-class DiscountsTest{
+class PurchaseTest{
 
-    val discounts = Discounts()
+    val discounts = Purchase()
 
     @Test
     fun should_return_0(){
