@@ -2,9 +2,7 @@ import org.junit.Assert
 import org.junit.Test
 import kotlin.system.measureTimeMillis
 
-/**
- * Created by mhz on 22/05/19.
- */
+
 class FiboTest {
 
     @Test
