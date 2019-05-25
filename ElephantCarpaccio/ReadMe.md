@@ -24,6 +24,7 @@ Output the recipe like :
     -----------------------------------------------------
     Total price                                    XXXXXX
 
+Discounts :
 
     Order value 	Discount rate
     > 1000 	3%
@@ -31,5 +32,7 @@ Output the recipe like :
     > 7000 	7%
     > 10000 	10%
     > 50000 	15%
+
+Taxes :
 
     | State | Tax rate | | UT | 6.85% | | NV | 8.00% | | TX | 6.25% | | AL | 4.00% | | CA | 8.25% |
