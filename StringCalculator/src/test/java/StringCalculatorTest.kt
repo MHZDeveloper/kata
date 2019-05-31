@@ -26,4 +26,9 @@ class StringCalculatorTest{
         Assert.assertEquals("8",add("0.8"))
         Assert.assertEquals("10",add("1.9"))
     }
+
+    @Test
+    fun should_return_right_answer_for_multiple_args(){
+        addMultipleArgs("0.8","1.9")
+    }
 }

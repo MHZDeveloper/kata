@@ -17,8 +17,9 @@ Create a function add that takes a String and returns a String:
 
 ### Many numbers
 
-Allow the add method to handle an unknow number of arguments.
-Newline as separator
+Allow the add method to handle an unknown number of arguments.
+
+### Newline as separator
 
 Allow the add method to handle newlines as separators:
 
