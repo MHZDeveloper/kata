@@ -1,9 +1,7 @@
 import org.junit.Assert
 import org.junit.Test
 
-/**
- * Created by mhz on 29/05/19.
- */
+
 class StringCalculatorTest{
 
 
