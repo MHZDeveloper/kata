@@ -22,6 +22,12 @@ class StringCalculatorTest{
     }
 
     @Test
+    fun should_return_error_if_number_contains_other_special_chars(){
+        Assert.assertEquals("error",add(".?3"))
+        Assert.assertEquals("error",add("2!."))
+    }
+
+    @Test
     fun should_return_zero_if_length_more_than_3(){
         Assert.assertEquals("0",add("7785"))
     }
@@ -40,10 +46,23 @@ class StringCalculatorTest{
 
     @Test
     fun should_return_right_sum_for_multiple_arguments(){
+        Assert.assertEquals("0",addMultipleArgs(""))
+        Assert.assertEquals("1",addMultipleArgs("1"))
         Assert.assertEquals("10",addMultipleArgs("0.8.2"))
         Assert.assertEquals("11",addMultipleArgs(".8.3"))
         Assert.assertEquals("8",addMultipleArgs("0.8."))
         Assert.assertEquals("error",addMultipleArgs("0..2"))
+    }
+
+    @Test
+    fun should_return_right_sum_for_multiple_arguments_with_newLine_as_separator(){
+        Assert.assertEquals("0",addMultipleArgs(""))
+        Assert.assertEquals("1",addMultipleArgs("1"))
+        Assert.assertEquals("10",addMultipleArgs("0.8\n2"))
+        Assert.assertEquals("11",addMultipleArgs("\n8.3"))
+        Assert.assertEquals("8",addMultipleArgs("0.8\n"))
+        Assert.assertEquals("error",addMultipleArgs("0.\n2"))
+        Assert.assertEquals("error",addMultipleArgs("0\n.2"))
     }
 
 }

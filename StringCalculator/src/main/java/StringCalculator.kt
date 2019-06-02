@@ -6,6 +6,13 @@ fun String.getOccurances(c: Char): Int {
     return result
 }
 
+fun String.onlyContainsNumbersAndSpecialChars(vararg chars:Char):Boolean{
+    this.forEach { c ->
+        if(!c.isDigit() && !chars.contains(c)) return false
+    }
+    return true
+}
+
 fun add(number: String): String {
     when {
         number.isEmpty()
@@ -13,7 +20,7 @@ fun add(number: String): String {
                 number.length > 3
                 ||
                 number.getOccurances('.') > 1 -> return "0"
-
+        !number.onlyContainsNumbersAndSpecialChars('.') -> return "error"
         !number.contains(".") -> return number
 
         number[0].isDigit() && number[2].isDigit() -> {
@@ -30,12 +37,24 @@ fun addMultipleArgs(number: String): String {
     if (number.isEmpty()) {
         return "0"
     }
-    if (!number.contains(".")) {
+    if(!number.onlyContainsNumbersAndSpecialChars('.','\n')){
+        return "error"
+    }
+    if (!number.contains(".") && !number.contains("\n")) {
         return number
     }
     var result = 0
     for (i in 1 until number.length) {
         if (number[i] == number[i - 1] && number[i] == '.') return "error"
+        if (number[i] == number[i - 1] && number[i] == '\n') return "error"
+        if (number[i - 1] == '.' && number[i] == '\n') {
+            println("should find a number at position $i")
+            return "error"
+        }
+        if (number[i - 1] == '\n' && number[i] == '.') {
+            println("should find a number at position $i")
+            return "error"
+        }
         if (number[i].isDigit())
             result = result + number[i].toInt() - '0'.toInt()
     }
