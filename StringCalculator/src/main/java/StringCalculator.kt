@@ -44,6 +44,7 @@ fun addMultipleArgs(number: String): String {
         }
     }
     var result = 0
+    if (number[0].isDigit()) result = result + number[0].toInt() - '0'.toInt()
     for (i in 1 until number.length) {
         if ((number[i] == number[i - 1] && number[i] == '.')
                 ||
@@ -64,29 +65,28 @@ fun addMultipleArgs(number: String): String {
 
 fun addMultipleArgsWithDelimiter(number: String): String {
     when {
-        number.isEmpty() -> return "0"
-        !number.onlyContainsNumbersAndSpecialChars('.', '\n') -> return "error"
-        !number.contains(".") && !number.contains("\n") -> return number
-        (number[number.length - 1] == '\n' || number[number.length - 1] == '.') -> {
+        number.length < 5 -> return "0"
+        !number[0].equals('/') || !number[1].equals('/') || !number.contains('\n') -> return "error"
+    }
+    val delimiter = number[2]
+    val operation = number.substring(4, number.length)
+    when {
+        !operation.onlyContainsNumbersAndSpecialChars(delimiter) -> return number
+        operation[operation.length - 1] == delimiter -> {
             println("Number expected but EOF found")
             return "error"
         }
     }
     var result = 0
-    for (i in 1 until number.length) {
-        if ((number[i] == number[i - 1] && number[i] == '.')
-                ||
-                (number[i] == number[i - 1] && number[i] == '\n')
-                ||
-                (number[i - 1] == '.' && number[i] == '\n')
-                ||
-                (number[i - 1] == '\n' && number[i] == '.')) {
-
+    if (operation[0].isDigit())
+        result = result + operation[0].toInt() - '0'.toInt()
+    for (i in 1 until operation.length) {
+        if ((operation[i] == operation[i - 1] && operation[i] == delimiter)) {
             println("should find a number at position $i")
             return "error"
         }
-        if (number[i].isDigit())
-            result = result + number[i].toInt() - '0'.toInt()
+        if (operation[i].isDigit())
+            result = result + operation[i].toInt() - '0'.toInt()
     }
     return result.toString()
 }

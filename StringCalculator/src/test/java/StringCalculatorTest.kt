@@ -48,7 +48,7 @@ class StringCalculatorTest{
     fun should_return_right_sum_for_multiple_arguments(){
         Assert.assertEquals("0",addMultipleArgs(""))
         Assert.assertEquals("1",addMultipleArgs("1"))
-        Assert.assertEquals("10",addMultipleArgs("0.8.2"))
+        Assert.assertEquals("11",addMultipleArgs("1.8.2"))
         Assert.assertEquals("11",addMultipleArgs(".8.3"))
         Assert.assertEquals("error",addMultipleArgs("0..2"))
     }
@@ -71,6 +71,15 @@ class StringCalculatorTest{
         Assert.assertEquals("error",addMultipleArgs("0.8\n"))
         Assert.assertEquals("error",addMultipleArgs("0.2\n"))
         Assert.assertEquals("error",addMultipleArgs("0\n2."))
+    }
+
+    @Test
+    fun should_return_right_sum_with_delimiter_as_char(){
+        Assert.assertEquals("0",addMultipleArgsWithDelimiter(""))
+        Assert.assertEquals("error",addMultipleArgsWithDelimiter("/L\nL8"))
+        Assert.assertEquals("error",addMultipleArgsWithDelimiter("//L\nL"))
+        Assert.assertEquals("error",addMultipleArgsWithDelimiter("//L\nLL8"))
+        Assert.assertEquals("10",addMultipleArgsWithDelimiter("//|\n2|8"))
     }
 
 }
