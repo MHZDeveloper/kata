@@ -34,18 +34,43 @@ fun add(number: String): String {
 }
 
 fun addMultipleArgs(number: String): String {
-    if (number.isEmpty()) {
-        return "0"
+    when {
+        number.isEmpty() -> return "0"
+        !number.onlyContainsNumbersAndSpecialChars('.', '\n') -> return "error"
+        !number.contains(".") && !number.contains("\n") -> return number
+        (number[number.length - 1] == '\n' || number[number.length - 1] == '.') -> {
+            println("Number expected but EOF found")
+            return "error"
+        }
     }
-    if (!number.onlyContainsNumbersAndSpecialChars('.', '\n')) {
-        return "error"
+    var result = 0
+    for (i in 1 until number.length) {
+        if ((number[i] == number[i - 1] && number[i] == '.')
+                ||
+                (number[i] == number[i - 1] && number[i] == '\n')
+                ||
+                (number[i - 1] == '.' && number[i] == '\n')
+                ||
+                (number[i - 1] == '\n' && number[i] == '.')) {
+
+            println("should find a number at position $i")
+            return "error"
+        }
+        if (number[i].isDigit())
+            result = result + number[i].toInt() - '0'.toInt()
     }
-    if (!number.contains(".") && !number.contains("\n")) {
-        return number
-    }
-    if (number[number.length - 1] == '\n' || number[number.length - 1] == '.') {
-        println("Number expected but EOF found")
-        return "error"
+    return result.toString()
+}
+
+fun addMultipleArgsWithDelimiter(number: String): String {
+    when {
+        number.isEmpty() -> return "0"
+        !number.onlyContainsNumbersAndSpecialChars('.', '\n') -> return "error"
+        !number.contains(".") && !number.contains("\n") -> return number
+        (number[number.length - 1] == '\n' || number[number.length - 1] == '.') -> {
+            println("Number expected but EOF found")
+            return "error"
+        }
     }
     var result = 0
     for (i in 1 until number.length) {
