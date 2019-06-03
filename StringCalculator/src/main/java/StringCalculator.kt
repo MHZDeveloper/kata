@@ -6,9 +6,9 @@ fun String.getOccurances(c: Char): Int {
     return result
 }
 
-fun String.onlyContainsNumbersAndSpecialChars(vararg chars:Char):Boolean{
+fun String.onlyContainsNumbersAndSpecialChars(vararg chars: Char): Boolean {
     this.forEach { c ->
-        if(!c.isDigit() && !chars.contains(c)) return false
+        if (!c.isDigit() && !chars.contains(c)) return false
     }
     return true
 }
@@ -37,21 +37,26 @@ fun addMultipleArgs(number: String): String {
     if (number.isEmpty()) {
         return "0"
     }
-    if(!number.onlyContainsNumbersAndSpecialChars('.','\n')){
+    if (!number.onlyContainsNumbersAndSpecialChars('.', '\n')) {
         return "error"
     }
     if (!number.contains(".") && !number.contains("\n")) {
         return number
     }
+    if (number[number.length - 1] == '\n' || number[number.length - 1] == '.') {
+        println("Number expected but EOF found")
+        return "error"
+    }
     var result = 0
     for (i in 1 until number.length) {
-        if (number[i] == number[i - 1] && number[i] == '.') return "error"
-        if (number[i] == number[i - 1] && number[i] == '\n') return "error"
-        if (number[i - 1] == '.' && number[i] == '\n') {
-            println("should find a number at position $i")
-            return "error"
-        }
-        if (number[i - 1] == '\n' && number[i] == '.') {
+        if ((number[i] == number[i - 1] && number[i] == '.')
+                ||
+                (number[i] == number[i - 1] && number[i] == '\n')
+                ||
+                (number[i - 1] == '.' && number[i] == '\n')
+                ||
+                (number[i - 1] == '\n' && number[i] == '.')) {
+
             println("should find a number at position $i")
             return "error"
         }

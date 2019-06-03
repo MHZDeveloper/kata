@@ -50,7 +50,6 @@ class StringCalculatorTest{
         Assert.assertEquals("1",addMultipleArgs("1"))
         Assert.assertEquals("10",addMultipleArgs("0.8.2"))
         Assert.assertEquals("11",addMultipleArgs(".8.3"))
-        Assert.assertEquals("8",addMultipleArgs("0.8."))
         Assert.assertEquals("error",addMultipleArgs("0..2"))
     }
 
@@ -60,9 +59,18 @@ class StringCalculatorTest{
         Assert.assertEquals("1",addMultipleArgs("1"))
         Assert.assertEquals("10",addMultipleArgs("0.8\n2"))
         Assert.assertEquals("11",addMultipleArgs("\n8.3"))
-        Assert.assertEquals("8",addMultipleArgs("0.8\n"))
+        Assert.assertEquals("error",addMultipleArgs("0.8\n"))
         Assert.assertEquals("error",addMultipleArgs("0.\n2"))
         Assert.assertEquals("error",addMultipleArgs("0\n.2"))
+        Assert.assertEquals("error",addMultipleArgs("0,2\n"))
+        Assert.assertEquals("error",addMultipleArgs("0\n2."))
+    }
+
+    @Test
+    fun should_return_error_if_separator_at_the_end(){
+        Assert.assertEquals("error",addMultipleArgs("0.8\n"))
+        Assert.assertEquals("error",addMultipleArgs("0.2\n"))
+        Assert.assertEquals("error",addMultipleArgs("0\n2."))
     }
 
 }
