@@ -12,17 +12,11 @@ fun buzz(number:Int) : Boolean{
 }
 
 fun fizzbuzz(number:Int):String{
-    if(fizz(number)&&buzz(number)){
-        return "fizzbuzz"
-    }
-    else if(fizz(number)){
-        return "fizz"
-    }
-    else if(buzz(number)){
-        return  "buzz"
-    }
-    else{
-        return number.toString()
+    when{
+        fizz(number)&&buzz(number) -> return "fizzbuzz"
+        fizz(number) -> return "fizz"
+        buzz(number) -> return "buzz"
+        else -> return number.toString()
     }
 }
 
