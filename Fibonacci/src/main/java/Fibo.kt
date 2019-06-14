@@ -1,3 +1,4 @@
+import kotlin.coroutines.experimental.buildSequence
 import kotlin.math.max
 
 
@@ -34,4 +35,18 @@ fun fiboIteration2(n: Int): Int {
             choose++
     }
     return max(max(x, y), z)
+}
+
+fun fibonacci(): Sequence<Int> = buildSequence {
+    var elements = Pair(0,1)
+    while (true){
+        yield(elements.first)
+        elements = Pair(elements.second,elements.first+elements.second)
+    }
+}
+
+fun main(args: Array<String>) {
+    fibonacci().take(4).toList().toString() // "[0, 1, 1, 2]"
+
+    fibonacci().take(10).toList().toString() // "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
 }

@@ -53,4 +53,16 @@ class FiboTest {
         println("execution time : " + time)
     }
 
+    @Test
+    fun fibonacciTest(){
+        //given
+        val n = 16
+
+        //when
+        val result = fibonacci().take(n+1).toList().last()
+
+        //then
+        Assert.assertEquals(987,result)
+    }
+
 }
