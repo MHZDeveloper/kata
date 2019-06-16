@@ -1,4 +1,4 @@
-### Taxy park
+### Taxi park
 
 The TaxiPark class stores information about the registered drivers, passengers, and their trips. Your task is to implement six functions which collect different statistics about the data.
 
