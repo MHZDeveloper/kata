@@ -33,3 +33,13 @@ fun binarySearch(low:Int,high:Int,value:Int):Int{
     }
     return -1
 }
+
+fun exponentialSearch(value:Int):Int{
+    var size =1
+    val high = sortedTab.size
+    if(sortedTab[0]==value) return 0
+    while (size<high && value>sortedTab[size-1]) {
+        size*=2
+    }
+    return binarySearch(size/2,Math.min(size,high),value)
+}
