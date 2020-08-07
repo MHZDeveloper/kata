@@ -1,16 +1,9 @@
-fun String.getOccurances(c: Char): Int {
-    var result = 0
-    for (i in this) {
-        if (i == c) result++
-    }
-    return result
+fun String.occurences(c: Char): Int {
+    return this.filter { char -> char == c }.length
 }
 
 fun String.onlyContainsNumbersAndSpecialChars(vararg chars: Char): Boolean {
-    this.forEach { c ->
-        if (!c.isDigit() && !chars.contains(c)) return false
-    }
-    return true
+    return this.none { c -> !c.isDigit() && !chars.contains(c) }
 }
 
 fun add(number: String): String {
@@ -19,7 +12,7 @@ fun add(number: String): String {
                 ||
                 number.length > 3
                 ||
-                number.getOccurances('.') > 1 -> return "0"
+                number.occurences('.') > 1 -> return "0"
         !number.onlyContainsNumbersAndSpecialChars('.') -> return "error"
         !number.contains(".") -> return number
 
